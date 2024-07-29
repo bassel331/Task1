@@ -2,9 +2,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Question {
-    String text;
-    ArrayList<String> answers;
-    String correctAnswer;
+    private String text;
+    private ArrayList<String> answers;
+    private String correctAnswer;
 
     public Question(String text, ArrayList<String> answers, String correctAnswer) {
         this.text = text;

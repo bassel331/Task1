@@ -18,7 +18,7 @@ public class Main {
         questions.add(new Question("Who was the first President of the United States?",
                 new ArrayList<>(Arrays.asList("George Washington", "Thomas Jefferson", "Abraham Lincoln", "John Adams")), "George Washington"));
         int i=1;
-        HashMap<String, Double> userScores = new HashMap<>();
+        HashMap<String, Integer> userScores = new HashMap<>();
 
         Scanner scanner = new Scanner(System.in);
 
@@ -31,25 +31,25 @@ public class Main {
             User user = new User(inputName,quiz);
             System.out.println("HELLO "+inputName );
             while(i<6){
-                System.out.println("Question "+ i +": " +user.quiz.questions.get(i-1).text);
-                System.out.println(user.quiz.questions.get(i-1).getAnswers());
+                System.out.println("Question "+ i +": " +user.getQuiz().getQuestions().get(i-1).getText());
+                System.out.println(user.getQuiz().getQuestions().get(i-1).getAnswers());
                 String inputAnswer = scanner.nextLine();
-                boolean correct = user.quiz.questions.get(i-1).isCorrectAnswer(inputAnswer);
+                boolean correct = user.getQuiz().getQuestions().get(i-1).isCorrectAnswer(inputAnswer);
                 if(correct){
-                    user.quiz.numberOfCorrectAnswers++;
+                    user.getQuiz().setNumberOfCorrectAnswers((int) (user.getQuiz().getNumberOfCorrectAnswers()+1.0));
                 }
                 System.out.println(correct);
                 i++;
             }
-            userScores.put(inputName,user.quiz.getNumberOfCorrectAnswers());
-            System.out.println("Congratulations "+ inputName+" your score is "+user.quiz.getNumberOfCorrectAnswers());
+            userScores.put(inputName,user.getQuiz().getNumberOfCorrectAnswers());
+            System.out.println("Congratulations "+ inputName+" your score is "+user.getQuiz().getNumberOfCorrectAnswers());
             System.out.println("Type 'yes' if there is someone present. Type 'no' if no one is around.");
             String nextOne = scanner.nextLine();
             if(nextOne.equalsIgnoreCase("no")){
                 System.out.println("User Scores:");
-                for (Map.Entry<String, Double> entry : userScores.entrySet()) {
+                for (Map.Entry<String, Integer> entry : userScores.entrySet()) {
                     String user2 = entry.getKey();
-                    Double score = entry.getValue();
+                    Integer score = entry.getValue();
                     System.out.println(user2 + ": " + score +"%");
                 }
                 return;

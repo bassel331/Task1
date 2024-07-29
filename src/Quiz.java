@@ -1,9 +1,8 @@
 import java.util.ArrayList;
-import java.util.List;
 
 public class Quiz {
-    ArrayList<Question> questions = new ArrayList<Question>();
-    int numberOfCorrectAnswers = 0;
+    private ArrayList<Question> questions = new ArrayList<Question>();
+   private int numberOfCorrectAnswers = 0;
     Quiz(ArrayList<Question> questions){
         this.questions = questions;
     }
@@ -13,8 +12,11 @@ public class Quiz {
     public ArrayList<Question> getQuestions(){
         return questions;
     }
-    public double getNumberOfCorrectAnswers(){
-        return (numberOfCorrectAnswers/5.0)*100;
+    public void setNumberOfCorrectAnswers(int numberOfCorrectAnswers){
+        this.numberOfCorrectAnswers = numberOfCorrectAnswers;
+    }
+    public int getNumberOfCorrectAnswers(){
+        return (int) ((numberOfCorrectAnswers/5.0)*100);
     }
 
 }
